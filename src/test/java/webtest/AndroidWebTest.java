@@ -26,23 +26,19 @@ public class AndroidWebTest {
     public void setUp() throws MalformedURLException {
         dc.setCapability("testName", testName);
         dc.setCapability("accessKey",accessKey);
-        dc.setBrowserName(MobileBrowserType.CHROME);
+        dc.setCapability("deviceQuery", "@os='android' and @category='PHONE'");
+        dc.setBrowserName(MobileBrowserType.CHROMIUM);
         driver = new AndroidDriver(new URL("https://uscloud.experitest.com/wd/hub"),dc);
     }
 
     @Test
     public void testYourAndroidApp() throws InterruptedException {
-        driver.get("https://amazon.com");
-        System.out.println(driver.getTitle());
-        if( driver.getCapabilities().getCapability("device.category").equals("TABLET")){
-
-            driver.findElement(By.xpath("//*[@name='field-keywords']")).sendKeys("iPhone");
-            driver.findElement(By.xpath("//*[@text='Go']")).click();
-        }
-        else{
-            driver.findElement(By.xpath("//*[@name='k']")).sendKeys("iPhone");
-            driver.findElement(By.xpath("//*[@value='Go']")).click();
-        }
+        driver.rotate(ScreenOrientation.PORTRAIT);
+        driver.get("https://www.google.com");
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
+        WebElement searchBar = driver.findElement(By.name("q"));
+        searchBar.sendKeys("Experitest");
+        driver.findElement(By.xpath("//*[@css='BUTTON.Cdl0yb']")).click();
     }
 
     @After
