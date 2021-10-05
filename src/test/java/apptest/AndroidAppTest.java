@@ -24,11 +24,8 @@ public class AndroidAppTest {
     public void setUp() throws IOException {
         dc.setCapability("testName", testName);
         dc.setCapability("accessKey", accessKey);
-        //install the app on the device
-        dc.setCapability(MobileCapabilityType.APP, "http://d242m5chux1g9j.cloudfront.net/eribank.apk");
-        //get an Android device
-        dc.setCapability("platformName", "Android");
-        //launch the app
+        dc.setCapability("deviceQuery", "@os='android' and @category='PHONE'");
+        dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank/.LoginActivity");
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.experitest.ExperiBank");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
         driver = new AndroidDriver(new URL("https://uscloud.experitest.com/wd/hub"), dc);
@@ -36,19 +33,19 @@ public class AndroidAppTest {
 
     @Test
     public void testYourAndroidApp() {
+        driver.rotate(ScreenOrientation.PORTRAIT);
         driver.findElement(By.xpath("//*[@id='usernameTextField']")).sendKeys("company");
+        driver.hideKeyboard();
         driver.findElement(By.xpath("//*[@id='passwordTextField']")).sendKeys("company");
         driver.findElement(By.xpath("//*[@id='loginButton']")).click();
         driver.findElement(By.xpath("//*[@id='makePaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@id='phoneTextField']")).sendKeys("123456");
-        driver.findElement(By.xpath("//*[@id='nameTextField']")).sendKeys("Test");
-        driver.findElement(By.xpath("//*[@id='amountTextField']")).sendKeys("10");
-        driver.findElement(By.xpath("//*[@id='countryTextField']")).sendKeys("US");
-        driver.hideKeyboard();
+        driver.findElement(By.xpath("//*[@id='phoneTextField']")).sendKeys("0541234567");
+        driver.findElement(By.xpath("//*[@id='nameTextField']")).sendKeys("Jon Snow");
+        driver.findElement(By.xpath("//*[@id='amountTextField']")).sendKeys("50");
+        driver.findElement(By.xpath("//*[@id='countryButton']")).click();
+        driver.findElement(By.xpath("//*[@text='Switzerland']")).click();
         driver.findElement(By.xpath("//*[@id='sendPaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@id='button1']")).click();
-
-
+        driver.findElement(By.xpath("//*[@text='Yes']")).click();
     }
 
     @After
