@@ -26,7 +26,6 @@ public class iOSAppTest {
         dc.setCapability("deviceQuery", "@os='ios' and @category='PHONE'");
         //install the app on the device
         dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank");
-        dc.setCapability("autoDismissAlerts", true);
         //launch the app
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.experitest.ExperiBank");
         driver = new IOSDriver(new URL("https://uscloud.experitest.com/wd/hub"), dc);
