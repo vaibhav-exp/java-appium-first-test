@@ -23,7 +23,7 @@ public class iOSAppTest {
         dc.setCapability("testName", testName);
         dc.setCapability("accessKey", accessKey);
         //install the app on the device
-        dc.setCapability(MobileCapabilityType.APP, "http://d242m5chux1g9j.cloudfront.net/EriBank.ipa");
+        dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank");
         //get an iOS device
         dc.setCapability("platformName", "iOS");
         dc.setCapability("autoDismissAlerts", true);
@@ -36,16 +36,19 @@ public class iOSAppTest {
     @Test
     public void testYouriOSApp() {
 
-        driver.findElement(By.xpath("//*[@text='Username']")).sendKeys("company");
-        driver.findElement(By.xpath("//*[@text='Password']")).sendKeys("company");
-        driver.findElement(By.xpath("//*[@text='loginButton']")).click();
-        driver.findElement(By.xpath("//*[@text='makePaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@text='Phone']")).sendKeys("123456");
-        driver.findElement(By.xpath("//*[@text='Name']")).sendKeys("Test");
-        driver.findElement(By.xpath("//*[@text='Amount']")).sendKeys("10");
-        driver.findElement(By.xpath("//*[@text='Country']")).sendKeys("US");
-        driver.findElement(By.xpath("//*[@text='sendPaymentButton']")).click();
-        driver.findElement(By.xpath("//*[@text='Yes']")).click();
+        driver.rotate(ScreenOrientation.PORTRAIT);
+        driver.findElement(By.xpath("//*[@id='usernameTextField']")).sendKeys("company");
+        driver.hideKeyboard();
+        driver.findElement(By.xpath("//*[@id='passwordTextField']")).sendKeys("company");
+        driver.findElement(By.xpath("//*[@id='loginButton']")).click();
+        driver.findElement(By.xpath("//*[@id='makePaymentButton']")).click();
+        driver.findElement(By.xpath("//*[@id='phoneTextField']")).sendKeys("0541234567");
+        driver.findElement(By.xpath("//*[@id='nameTextField']")).sendKeys("Jon Snow");
+        driver.findElement(By.xpath("//*[@id='amountTextField']")).sendKeys("50");
+        driver.findElement(By.xpath("//*[@id='countryButton']")).click();
+        driver.findElement(By.xpath("//*[@id='Switzerland']")).click();
+        driver.findElement(By.xpath("//*[@id='sendPaymentButton']")).click();
+        driver.findElement(By.xpath("//*[@id='Yes']")).click();
 
     }
 
