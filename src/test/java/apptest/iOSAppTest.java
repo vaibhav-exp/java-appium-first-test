@@ -17,7 +17,8 @@ public class iOSAppTest {
     IOSDriver driver = null;
     DesiredCapabilities dc = new DesiredCapabilities();
     String testName = "Testing iOS App with Java";
-    String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
+    String accessKey = System.getenv("ACCESS_KEY");
+    String cloudURL = System.getenv("CLOUD_URL");
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -28,7 +29,7 @@ public class iOSAppTest {
         dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank");
         //launch the app
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.experitest.ExperiBank");
-        driver = new IOSDriver(new URL("https://uscloud.experitest.com/wd/hub"), dc);
+        driver = new IOSDriver(new URL(cloudURL + "/wd/hub"), dc);
     }
 
     @Test
