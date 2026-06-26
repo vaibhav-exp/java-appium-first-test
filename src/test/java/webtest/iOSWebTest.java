@@ -61,7 +61,7 @@ public class iOSWebTest {
         if (driver != null)
         {
             driver.quit();
-            System.out.println("Report URL : " + driver.getCapabilities().getCapability("reportUrl"));
+            System.out.println("Report URL : " + driver.getCapabilities().getCapability("digitalai:reportUrl"));
 
         }
     }
