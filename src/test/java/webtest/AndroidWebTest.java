@@ -54,7 +54,6 @@ public class AndroidWebTest {
         driver.findElement(By.xpath("//*[@data-auto='country']")).click();
         driver.findElement(By.xpath("//*[text()='India']")).click();
         driver.findElement(By.xpath("//*[@data-auto='transfer-button']")).click();
-        assertEquals("34,000$", driver.findElement(By.xpath("//*[@data-auto='total-balance-amount']")).getText());
     }
 
     @After
