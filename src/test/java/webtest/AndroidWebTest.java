@@ -41,6 +41,7 @@ public class AndroidWebTest {
     @Test
     public void testYourAndroidApp() throws InterruptedException {
         driver.rotate(ScreenOrientation.PORTRAIT);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.get("https://demo-bank.ct.digital.ai");
         driver.findElement(By.xpath("//*[@data-auto='username']//input")).sendKeys("company");
         driver.findElement(By.xpath("//*[@data-auto='password']//input")).sendKeys("company");
@@ -54,6 +55,7 @@ public class AndroidWebTest {
         driver.findElement(By.xpath("//*[@data-auto='country']")).click();
         driver.findElement(By.xpath("//*[text()='India']")).click();
         driver.findElement(By.xpath("//*[@data-auto='transfer-button']")).click();
+        driver.findElementByXPath("(//*[@text='Logout'])[1]").click();
     }
 
     @After
