@@ -19,7 +19,8 @@ public class AndroidAppTest {
     AndroidDriver driver = null;
     DesiredCapabilities dc = new DesiredCapabilities();
     String testName = "Testing Android App with Java";
-    String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
+    String accessKey = System.getenv("ACCESS_KEY");
+    String cloudURL = System.getenv("CLOUD_URL");
 
     @Before
     public void setUp() throws IOException {
@@ -29,7 +30,7 @@ public class AndroidAppTest {
         dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank/.LoginActivity");
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.experitest.ExperiBank");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".LoginActivity");
-        driver = new AndroidDriver(new URL("https://uscloud.experitest.com/wd/hub"), dc);
+        driver = new AndroidDriver(new URL( cloudURL + "/wd/hub"), dc);
     }
 
     @Test
