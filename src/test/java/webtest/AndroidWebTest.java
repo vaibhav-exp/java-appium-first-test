@@ -41,11 +41,20 @@ public class AndroidWebTest {
     @Test
     public void testYourAndroidApp() throws InterruptedException {
         driver.rotate(ScreenOrientation.PORTRAIT);
-        driver.get("https://www.google.com");
-        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
-        WebElement searchBar = driver.findElement(By.name("q"));
-        searchBar.sendKeys("Experitest");
-        driver.findElement(By.xpath("//*[@css='BUTTON.Cdl0yb']")).click();
+        driver.get("https://demo-bank.ct.digital.ai");
+        driver.findElement(By.xpath("//*[@data-auto='username']//input")).sendKeys("company");
+        driver.findElement(By.xpath("//*[@data-auto='password']//input")).sendKeys("company");
+        driver.hideKeyboard();
+        driver.findElement(By.xpath("//*[@data-auto='login']")).click();
+        driver.findElement(By.xpath("//*[@data-auto='transfer-funds']")).click();
+        driver.findElement(By.xpath("//input[@name='NAME']")).sendKeys("John");
+        driver.findElement(By.xpath("//input[@name='PHONE']")).sendKeys("0541234567");
+        driver.findElement(By.xpath("//input[@name='AMOUNT']")).sendKeys("1000");
+        driver.hideKeyboard();
+        driver.findElement(By.xpath("//*[@data-auto='country']")).click();
+        driver.findElement(By.xpath("//*[text()='India']")).click();
+        driver.findElement(By.xpath("//*[@data-auto='transfer-button']")).click();
+        assertEquals("34,000$", driver.findElement(By.xpath("//*[@data-auto='total-balance-amount']")).getText());
     }
 
     @After
