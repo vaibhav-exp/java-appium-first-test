@@ -26,7 +26,8 @@ public class AndroidWebTest {
     AndroidDriver driver = null;
     DesiredCapabilities dc = new DesiredCapabilities();
     String testName = "Testing Website on Android Chrome with Java";
-    String accessKey = System.getenv("SEETEST_IO_ACCESS_KEY");
+    String accessKey = System.getenv("ACCESS_KEY");
+    String cloudURL = System.getenv("CLOUD_URL");
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -34,7 +35,7 @@ public class AndroidWebTest {
         dc.setCapability("accessKey",accessKey);
         dc.setCapability("deviceQuery", "@os='android' and @category='PHONE'");
         dc.setBrowserName(MobileBrowserType.CHROMIUM);
-        driver = new AndroidDriver(new URL("https://uscloud.experitest.com/wd/hub"),dc);
+        driver = new AndroidDriver(new URL(cloudURL + "/wd/hub"),dc);
     }
 
     @Test
